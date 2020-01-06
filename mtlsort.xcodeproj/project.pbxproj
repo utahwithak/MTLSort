@@ -24,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F2EA92923C3B1C5007BF8B4 /* Structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
+		8F2EA92A23C3B1F2007BF8B4 /* mtlsort-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mtlsort-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F34D1A12358BA5E00FF4053 /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8FD5673B234824270066F694 /* mtlsort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mtlsort; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5673E234824270066F694 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -62,7 +64,9 @@
 			children = (
 				8FD5673E234824270066F694 /* main.swift */,
 				8FD56745234824360066F694 /* Shader.metal */,
+				8F2EA92923C3B1C5007BF8B4 /* Structs.h */,
 				8F34D1A12358BA5E00FF4053 /* playground.playground */,
+				8F2EA92A23C3B1F2007BF8B4 /* mtlsort-Bridging-Header.h */,
 			);
 			path = mtlsort;
 			sourceTree = "<group>";
@@ -99,6 +103,7 @@
 				TargetAttributes = {
 					8FD5673A234824270066F694 = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -249,10 +254,18 @@
 		8FD56743234824270066F694 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QV4QS82KBT;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mtlsort/mtlsort-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -260,10 +273,17 @@
 		8FD56744234824270066F694 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QV4QS82KBT;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mtlsort/mtlsort-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

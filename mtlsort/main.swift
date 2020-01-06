@@ -6,17 +6,21 @@ let device = MTLCopyAllDevices()[1]
 
 let commandQueue = device.makeCommandQueue()!
 let library = device.makeDefaultLibrary()!
-let sortFunction = library.makeFunction(name: "parallelBitonic")!
+let sortFunction = library.makeFunction(name: "pointBitonic")!
 let pipeline = try! device.makeComputePipelineState(function: sortFunction)
 
-let shift = 10
+let shift = 13
 let size = 1<<shift
 
-typealias DataType = Float32
+typealias DataType = Vector2
 
-var data: [DataType ] = [DataType](repeating: 0, count: size)
-for i in 0..<size {
-    data[i] = DataType((Double(arc4random()) / Double(UINT32_MAX)) * Double(size))
+var data: [DataType ] = [DataType](repeating: Vector2(x: 0, y: 0), count: size)
+let squareSize = 1<<(shift >> 1)
+for y in 0..<squareSize {
+    for x in 0..<squareSize  {
+        data[(y * squareSize) + x].x = Float(x)
+        data[(y * squareSize) + x].y = Float(y)
+    }
 }
 
 let dataBuffer1 = device.makeBuffer(bytes: &data, length: MemoryLayout<DataType>.stride * data.count, options: [.storageModeManaged])!
@@ -60,15 +64,21 @@ var stop = Date()
 var time =  stop.timeIntervalSince(start)
 print("GPU Time:\(time)")
 start = Date()
-data.sort()
+data.sort { (a, b) -> Bool in
+    if a.x < b.x {
+        return true;
+    } else if a.x > b.x {
+        return false;
+    } else {
+        return a.y < b.y;
+    }
+}
 stop = Date()
 time = stop.timeIntervalSince(start)
 print("CPU Time:\(time)")
 
-
-
 var match = true
-for i in 0..<data.count {
-    match = match && resultsArray[i] == data[i];
+for i in 0..<data.count where match {
+    match = resultsArray[i].x == data[i].x && resultsArray[i].y == data[i].y
 }
 print("shift: \(shift) Match:\(match)")

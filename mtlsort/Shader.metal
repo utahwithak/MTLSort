@@ -7,6 +7,8 @@
 //
 
 #include <metal_stdlib>
+#include "Structs.h"
+
 using namespace metal;
 
 typedef float DataType;
@@ -29,6 +31,40 @@ kernel void parallelBitonic(device DataType *input [[buffer(0)]],
     DataType idVal = input[id];
 
     if (((i & d) == 0) && ((bool)(iVal > idVal) == up)) {
+        input[i] = idVal;
+        input[id] = iVal;
+    }
+}
+
+
+bool isOrderedBefore(Vector2 a, Vector2 b) {
+    if (a.x < b.x) {
+        return false;
+    } else if (a.x > b.x) {
+        return true;
+    } else {
+        return a.y >= b.y;
+    }
+}
+
+kernel void pointBitonic(device Vector2 *input [[buffer(0)]],
+                            constant uint &p [[buffer(1)]],
+                            constant uint &q [[buffer(2)]],
+                            uint tid [[ thread_index_in_threadgroup ]],
+                            uint bid [[ threadgroup_position_in_grid ]],
+                            uint blockDim [[ threads_per_threadgroup ]])
+{
+
+    uint d = 1 << (p - q);
+
+    uint i = bid * blockDim + tid;
+
+    bool up = ((i >> p) & 2) == 0;
+    uint id = i | d;
+    Vector2 iVal = input[i];
+    Vector2 idVal = input[id];
+
+    if (((i & d) == 0) && (isOrderedBefore(iVal, idVal) == up)) {
         input[i] = idVal;
         input[id] = iVal;
     }
