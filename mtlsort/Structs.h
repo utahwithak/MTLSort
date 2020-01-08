@@ -10,7 +10,7 @@
 #define Structs_h
 
 typedef struct {
-    float x;
-    float y;
+    int x;
+    int y;
 } Vector2;
 #endif /* Structs_h */

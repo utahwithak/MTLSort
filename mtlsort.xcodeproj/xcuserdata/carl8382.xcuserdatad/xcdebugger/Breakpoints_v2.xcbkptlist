@@ -3,4 +3,86 @@
    uuid = "D8204B86-8838-4B46-B616-3BD02C530791"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF2D43CE-F6D9-4C25-B74A-2C9B4B1F3624"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mtlsort/main.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "boundingBox()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "AF2D43CE-F6D9-4C25-B74A-2C9B4B1F3624 - 1ee40c3f830df6dd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mtlsort.boundingBox() -&gt; ()"
+                  moduleName = "mtlsort"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carl8382/Downloads/mtlsort/mtlsort/main.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "12990">
+               </Location>
+               <Location
+                  uuid = "AF2D43CE-F6D9-4C25-B74A-2C9B4B1F3624 - f2e84fbc72ebf6f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int32) -&gt; __C.Vector2 in mtlsort.boundingBox() -&gt; ()"
+                  moduleName = "mtlsort"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carl8382/Downloads/mtlsort/mtlsort/main.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1369A787-A85B-46DA-B5E2-F8A41978DF5A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mtlsort/main.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "boundingBox()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67931E50-D6ED-4D12-A5B4-2EEBC646E336"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mtlsort/main.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "boundingBox()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
