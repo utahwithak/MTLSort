@@ -169,9 +169,6 @@ func boundingBox() {
 
 }
 
-
-
-
 func doBoth() {
     //let device = MTLCreateSystemDefaultDevice()!
     let device = MTLCopyAllDevices()[1]
@@ -221,8 +218,6 @@ func doBoth() {
             encoder.setBytes(&q, length: MemoryLayout<UInt32>.stride, index: 2)
             encoder.dispatchThreadgroups(threadgroupsPerGrid, threadsPerThreadgroup: threadsPerThreadgroup)
             encoder.endEncoding()
-
-
         }
     }
 
@@ -241,7 +236,6 @@ func doBoth() {
         blitEncoder.synchronize(resource: resultBuf)
         blitEncoder.endEncoding()
     }
-
 
     if let blitEncoder = commands.makeBlitCommandEncoder() {
         blitEncoder.synchronize(resource: dataBuffer1)
@@ -297,9 +291,6 @@ func doBoth() {
         match = resultsArray[i].x == data[i].x && resultsArray[i].y == data[i].y
     }
     print("shift: \(shift) Match:\(match)")
-
-
-
 
 }
 

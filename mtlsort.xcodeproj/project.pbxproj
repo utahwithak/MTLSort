@@ -26,7 +26,6 @@
 /* Begin PBXFileReference section */
 		8F2EA92923C3B1C5007BF8B4 /* Structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
 		8F2EA92A23C3B1F2007BF8B4 /* mtlsort-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mtlsort-Bridging-Header.h"; sourceTree = "<group>"; };
-		8F34D1A12358BA5E00FF4053 /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8FD5673B234824270066F694 /* mtlsort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mtlsort; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5673E234824270066F694 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8FD56745234824360066F694 /* Shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
@@ -65,7 +64,6 @@
 				8FD5673E234824270066F694 /* main.swift */,
 				8FD56745234824360066F694 /* Shader.metal */,
 				8F2EA92923C3B1C5007BF8B4 /* Structs.h */,
-				8F34D1A12358BA5E00FF4053 /* playground.playground */,
 				8F2EA92A23C3B1F2007BF8B4 /* mtlsort-Bridging-Header.h */,
 			);
 			path = mtlsort;
