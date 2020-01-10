@@ -19,8 +19,8 @@ func sortData() {
     let squareSize = 1<<(shift >> 1)
     for y in 0..<squareSize {
         for x in 0..<squareSize  {
-            data[(y * squareSize) + x].x = Int32(x)
-            data[(y * squareSize) + x].y = Int32(y)
+            data[(y * squareSize) + x].x = RealType(x)
+            data[(y * squareSize) + x].y = RealType(y)
         }
     }
 
@@ -104,8 +104,8 @@ func boundingBox() {
     let squareSize = 1<<(shift >> 1)
     for y in 0..<squareSize {
         for x in 0..<squareSize  {
-            data[(y * squareSize) + x].x = Int32(x)
-            data[(y * squareSize) + x].y = Int32(y)
+            data[(y * squareSize) + x].x = RealType(x)
+            data[(y * squareSize) + x].y = RealType(y)
         }
     }
 
@@ -191,8 +191,8 @@ func doBoth() {
     let squareSize = 1<<(shift >> 1)
     for y in 0..<squareSize {
         for x in 0..<squareSize  {
-            data[(y * squareSize) + x].x = Int32(x)
-            data[(y * squareSize) + x].y = Int32(y)
+            data[(y * squareSize) + x].x = RealType(x)
+            data[(y * squareSize) + x].y = RealType(y)
         }
     }
 
@@ -295,6 +295,103 @@ func doBoth() {
 }
 
 
-doBoth()
+let morton = MortonFun()
+morton.doStuff()
 
 
+
+struct Point {
+    var x: Float
+    var y: Float
+}
+
+func morton(points: [Point], minVal: Float, maxVal: Float) -> [Int32] {
+    var destination = [Int32](repeating: 0, count: points.count)
+    let range = maxVal - minVal;
+
+    let Gap08: Int32 = 0x00FF00FF;   // Creates 16-bit gap between value bits
+    let Gap04: Int32 = 0x0F0F0F0F;   // ... and so on ...
+    let Gap02: Int32 = 0x33333333;   // ...
+    let Gap01: Int32 = 0x55555555;   // ...
+
+    let minInt: Int32 = 0x0;
+    let maxInt: Int32 = 0x7FFF;
+
+    for i in 0..<points.count {
+        var mortonNum: Int32 = 0;
+
+        // Iterate coordinates of point
+
+        // Read
+        var v = Int32( ( points[i].x - minVal ) / range * 32768.0 )
+
+        if ( v < minInt ) {
+            v = minInt;
+        }
+
+        if ( v > maxInt ) {
+            v = maxInt;
+        }
+
+        // Create 1-bit gaps between the 10 value bits
+        // Ex: 1010101010101010101
+        v = ( v | ( v <<  8 ) ) & Gap08;
+        v = ( v | ( v <<  4 ) ) & Gap04;
+        v = ( v | ( v <<  2 ) ) & Gap02;
+        v = ( v | ( v <<  1 ) ) & Gap01;
+
+        // Interleave bits of x-y coordinates
+        mortonNum |= ( v << 0 );
+
+        // Read
+        v = Int32( ( points[i].y - minVal ) / range * 32768.0 )
+
+        if ( v < minInt ) {
+            v = minInt;
+        }
+
+        if ( v > maxInt ) {
+            v = maxInt;
+        }
+
+        // Create 1-bit gaps between the 10 value bits
+        // Ex: 1010101010101010101
+        v = ( v | ( v <<  8 ) ) & Gap08;
+        v = ( v | ( v <<  4 ) ) & Gap04;
+        v = ( v | ( v <<  2 ) ) & Gap02;
+        v = ( v | ( v <<  1 ) ) & Gap01;
+
+        // Interleave bits of x-y coordinates
+        mortonNum |= ( v << 1 );
+
+        destination[i] = mortonNum;
+    }
+    return destination
+}
+let shift = 10
+var size = 1<<shift
+var data: [Point] = [Point](repeating: Point(x: 0, y: 0), count: size)
+
+let squareSize = 1<<(shift >> 1)
+for y in 0..<squareSize {
+    for x in 0..<squareSize  {
+        data[(y * squareSize) + x].x = Float(x)
+        data[(y * squareSize) + x].y = Float(y)
+    }
+}
+let results = morton(points: data, minVal: 0, maxVal: Float(squareSize - 1))
+
+print("second Result:\(results[1])")
+
+func sortKeyValues(data: [Point], keys: [Int32]) -> [Point]{
+    let zipped = zip(keys, data)
+
+    let sorted = zipped.sorted { (lhs, rhs) -> Bool in
+        lhs.0 < rhs.0
+    }
+    return sorted.map({ $0.1})
+}
+
+let sortedPoints = sortKeyValues(data: data, keys: results)
+
+print("Sortd:\(sortedPoints.map({ "(\($0.x), \($0.y))"}))")

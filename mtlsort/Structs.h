@@ -8,9 +8,10 @@
 
 #ifndef Structs_h
 #define Structs_h
+typedef float RealType;
 
 typedef struct {
-    int x;
-    int y;
+    RealType x;
+    RealType y;
 } Vector2;
 #endif /* Structs_h */
